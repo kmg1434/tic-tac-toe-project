@@ -14,7 +14,9 @@ require('./assets/styles/index.scss');
 require('expose?$!jquery');
 require('expose?jQuery!jquery');
 
-// documents on ready
-$(()=> {
-  // event listeners?
+const authEvents = require('./auth/events.js');
+
+// On document ready
+$(() => {
+  authEvents.addHandlers();
 });
