@@ -4,7 +4,9 @@ const app = require('../app');
 
 // const getFormFields = require('../../../lib/get-form-fields.js');
 
-//authApi.signUp(authUi.success, authUi.failure, data);
+// authApi.signUp(authUi.success, authUi.failure, data);
+
+// JQuery works but linter is throwing errors for "$ is not defined"
 
 const signUp = function (data) {
   console.log(data);
