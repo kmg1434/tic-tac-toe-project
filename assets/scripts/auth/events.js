@@ -8,41 +8,41 @@ const onSignUp = function (event) {
   //console.log('GOT TO onSignUp');
   event.preventDefault();
   let data = getFormFields(this);
-  debugger;
   api.signUp(data)
   .then(ui.success)
   .catch(ui.failure);
 };
 
-// const onSignIn = function (event) {
-//   event.preventDefault();
-//   let data = getFormFields(event.target);
-//   api.signIn(data)
-//   .done(ui.signInSuccess)
-//   .fail(ui.fail);
-// };
+const onSignIn = function (event) {
+  event.preventDefault();
+  let data = getFormFields(event.target);
+  api.signIn(data)
+  .then(ui.signInSuccess)
+  .catch(ui.failure);
+};
 
-// const onSignOut = function (event) {
-//   event.preventDefault();
-//   let data = getFormFields(event.target);
-//   api.signOut(data)
-//   .done(ui.signOutSuccess)
-//   .fail(ui.fail);
-// };
-//
+const onSignOut = function (event) {
+  event.preventDefault();
+  let data = getFormFields(event.target);
+  debugger;
+  api.signOut(data)
+  .then(ui.signOutSuccess)
+  .catch(ui.failure);
+};
+
 // const onChangePassword = function (event) {
 //   event.preventDefault();
 //   let data = getFormFields(event.target);
 //   api.changePassword(data)
-//   .done(ui.changePasswordSuccess)
-//   .fail(ui.fail);
+//   .then(ui.changePasswordSuccess)
+//   .catch(ui.failure);
 // };
 
 const addHandlers = () => {
   $('.sign-up-form').on('submit', onSignUp);
+  $('.sign-in-form').on('submit', onSignIn);
+  $('.sign-out-form').on('submit', onSignOut);
 
-  //$('.sign-in-form').on('submit', onSignIn);
-  //$('#sign-out').on('submit', onSignOut);
   //$('#change-password-form').on('submit', onChangePassword);
 };
 
