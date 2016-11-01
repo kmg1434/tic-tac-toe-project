@@ -11,5 +11,5 @@ const authEvents = require('./auth/events.js');
 // On document ready
 $(() => {
   authEvents.addHandlers();
-  //api.signUp({});
+
 });
