@@ -14,9 +14,6 @@ require('./assets/styles/index.scss');
 require('expose?$!jquery');
 require('expose?jQuery!jquery');
 
-const authEvents = require('./auth/events.js');
+// attach getFormFields globally
 
-// On document ready
-$(() => {
-  authEvents.addHandlers();
-});
+require('expose?getFormFields!./lib/get-form-fields.js');
