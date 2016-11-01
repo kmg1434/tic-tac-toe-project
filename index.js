@@ -13,3 +13,8 @@ require('./assets/styles/index.scss');
 // attach jQuery globally
 require('expose?$!jquery');
 require('expose?jQuery!jquery');
+
+// documents on ready
+$(()=> {
+  // event listeners?
+});

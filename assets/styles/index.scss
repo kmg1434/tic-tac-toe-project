@@ -4,13 +4,12 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 $black: #000;
 
 .board {
-  border: 10px solid $black;
   margin-top: 100px;
   padding: 10px;
 }
 
 .col-xs-4 {
-  border: 1px solid $black;
+  border: 5px solid $black;
   height: 100px;
   width: 100px;
 }
@@ -24,7 +23,7 @@ $black: #000;
   display: inline-block;
   float: none;
   // inline-block space fix
-  //margin-right: -4px;
+  margin-right: -4px;
   // reset the text-align
   text-align: left;
 }
