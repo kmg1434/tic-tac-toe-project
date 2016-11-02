@@ -4,7 +4,7 @@ const app = require('../app.js');
 
 const signInSuccess = (data) => {
   app.user = data.user;
-  console.log(app);
+  console.log(app.user);
 };
 
 const signOutSuccess = () => {

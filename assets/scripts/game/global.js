@@ -4,7 +4,8 @@
 const vars = {
 
   xTurn: true,
-  board: ['', '', '', '', '', '', '', ''],
+  turnCount: 0,
+  board: [],
 
 };
 

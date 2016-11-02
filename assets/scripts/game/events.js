@@ -10,6 +10,21 @@ const glob = require('./global.js');
 //
 // };
 
+const winCheck = function () {
+
+  let b = glob.vars.board;
+
+  // HORIZONTAL CHECKS
+  if (b[0] && (b[0] === b[1]) && (b[1] === b[2])) {
+    console.log(b[0] + ' wins!');
+  } else if (b[3] && (b[3] === b[4]) && (b[4] === b[5])) {
+    console.log(b[3] + ' wins!');
+  } else if (b[6] && (b[6] === b[7]) && (b[7] === b[8])) {
+    console.log(b[6] + ' wins!');
+  }
+
+};
+
 const onClick = function (event) {
 
   event.preventDefault();
@@ -32,7 +47,8 @@ const onClick = function (event) {
 
     }
 
-    //global.vars.board[tileId] = 'x';
+    winCheck();
+
     glob.vars.xTurn = !glob.vars.xTurn; // change teams
 
   }
