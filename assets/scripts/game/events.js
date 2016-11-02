@@ -6,7 +6,11 @@ const ui = require('./ui');
 
 const onClick = function () {
 
-  console.log('Clicked a tile!');
+  let tile = $(this).attr('id');
+  let tileID = '#' + tile;
+
+  console.log('Clicked tile ' + tileID);
+  //$('tileID').html('x');
 
 };
 
