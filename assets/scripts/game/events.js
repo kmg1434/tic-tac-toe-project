@@ -59,6 +59,7 @@ const onClick = function (event) {
   let tileId = '#' + tile;
   let i = +(tile.replace(/\D/g, '')); // tile number
 
+  // Valid Move check
   if (!glob.vars.board[i]) { // if not yet clicked
     if (glob.vars.xTurn) {
       $(tileId).html('X');
@@ -70,18 +71,14 @@ const onClick = function (event) {
 
   }
 
+  // TIE GAME CHECK
   if (!winCheck()) {
     glob.vars.xTurn = !glob.vars.xTurn; // change teams
     glob.vars.turnCount++;
     if (glob.vars.turnCount === 9) {
       console.log('TIE GAME');
     }
-
   }
-
-  // if ((glob.vars.turnCount === 9)) {
-  //   console.log("TIE GAME!!!!!!!!");
-  // }
 
   console.table(glob.vars.board);
 
