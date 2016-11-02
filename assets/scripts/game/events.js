@@ -10,7 +10,8 @@ const onClick = function () {
   let tileID = '#' + tile;
 
   console.log('Clicked tile ' + tileID);
-  //$('tileID').html('x');
+
+  $('tileID').html('X');
 
 };
 
