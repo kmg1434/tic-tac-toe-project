@@ -78,6 +78,16 @@ const onClick = function (event) {
     if (glob.vars.turnCount === 9) {
       console.log('TIE GAME');
     }
+  } else {
+    $('#tile0').off('click');
+    $('#tile1').off('click');
+    $('#tile2').off('click');
+    $('#tile3').off('click');
+    $('#tile4').off('click');
+    $('#tile5').off('click');
+    $('#tile6').off('click');
+    $('#tile7').off('click');
+    $('#tile8').off('click');
   }
 
   console.table(glob.vars.board);
