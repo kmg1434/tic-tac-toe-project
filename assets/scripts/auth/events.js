@@ -32,7 +32,6 @@ const onSignOut = function (event) {
 const onChangePassword = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
-  debugger;
   api.changePassword(data)
   .then(ui.changePasswordSuccess)
   .catch(ui.failure);
