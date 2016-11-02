@@ -24,26 +24,25 @@ const onSignIn = function (event) {
 const onSignOut = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
-  debugger;
   api.signOut(data)
   .then(ui.signOutSuccess)
   .catch(ui.failure);
 };
 
-// const onChangePassword = function (event) {
-//   event.preventDefault();
-//   let data = getFormFields(event.target);
-//   api.changePassword(data)
-//   .then(ui.changePasswordSuccess)
-//   .catch(ui.failure);
-// };
+const onChangePassword = function (event) {
+  event.preventDefault();
+  let data = getFormFields(event.target);
+  debugger;
+  api.changePassword(data)
+  .then(ui.changePasswordSuccess)
+  .catch(ui.failure);
+};
 
 const addHandlers = () => {
   $('.sign-up-form').on('submit', onSignUp);
   $('.sign-in-form').on('submit', onSignIn);
   $('.sign-out-form').on('submit', onSignOut);
-
-  //$('#change-password-form').on('submit', onChangePassword);
+  $('.change-password-form').on('submit', onChangePassword);
 };
 
 module.exports = {
