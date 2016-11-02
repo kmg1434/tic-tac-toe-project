@@ -10,33 +10,35 @@ const glob = require('./global.js');
 //
 // };
 
-const onClick = function () {
+const onClick = function (event) {
+
+  event.preventDefault();
 
   let tile = $(this).attr('id');
   let tileId = '#' + tile;
+  let i = +(tile.replace(/\D/g, '')); // tile number
+  console.log('Clicked tile ' + i);
 
-  console.log('Clicked tile ' + tileId);
+  if (!glob.vars.board[i]) { // if not yet clicked
 
-  // the number of the thing we clicked
-  let i = tile.replace(/\D/g, '');
+    if (glob.vars.xTurn) {
 
-  if (glob.vars.xTurn) {
+      $(tileId).html('X');
+      glob.vars.board[i] = 'x';
 
-    console.log('Clicked tile ' + i);
+    } else {
+      $(tileId).html('O');
+      glob.vars.board[i] = 'o';
 
-    $(tileId).html('X');
-    glob.vars.board[i] = 'x';
+    }
 
-  } else {
-    $(tileId).html('O');
-    glob.vars.board[i] = 'o';
+    //global.vars.board[tileId] = 'x';
+    glob.vars.xTurn = !glob.vars.xTurn; // change teams
 
   }
 
-  //global.vars.board[tileId] = 'x';
-  glob.vars.xTurn = !glob.vars.xTurn; // change teams
-
-  console.log('Whose turn: ' + glob.vars.xTurn);
+  console.log('X turn? ' + glob.vars.xTurn);
+  console.table(glob.vars.board);
 
 };
 
