@@ -5,6 +5,7 @@ const vars = {
 
   xTurn: true,
   turnCount: 0,
+  gameOver: false,
   board: [],
 
 };

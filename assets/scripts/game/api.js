@@ -42,12 +42,20 @@ const joinGame = function (data) {
   });
 };
 
-
+const updateGame = function (data) {
+  return $.ajax({
+    url: app.host + '/games/' + app.user.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + app.users.token,
+    },
+  });
+};
 
 module.exports = {
   getAll,
   createGame,
   findGame,
   joinGame,
-
-}
+  updateGame,
+};

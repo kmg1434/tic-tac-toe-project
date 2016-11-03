@@ -4,11 +4,14 @@ const app = require('../app.js');
 
 const signInSuccess = (data) => {
   app.user = data.user;
+  console.log('Successfully signed in');
   console.log(app.user);
+  debugger;
 };
 
 const signOutSuccess = () => {
   app.user = null;
+  console.log('Successfully signed out');
   console.log(app);
 };
 

@@ -1,19 +1,14 @@
 'use strict';
 
 // const getFormFields = require('../../../lib/get-form-fields.js');
-//const api = require('./api');
-//const ui = require('./ui');
+const api = require('./api');
+const ui = require('./ui');
 const glob = require('./global.js');
-
-// const createGame = function () {
-//   // some shit
-//
-// };
 
 const winCheck = function () {
 
   let b = glob.vars.board;
-  let gameOver = false;
+  let gameOver = glob.vars.gameOver;
 
   // HORIZONTAL CHECKS
   if (b[0] && (b[0] === b[1]) && (b[1] === b[2])) {
@@ -55,9 +50,9 @@ const onClick = function (event) {
 
   event.preventDefault();
 
-  let tile = $(this).attr('id');
-  let tileId = '#' + tile;
-  let i = +(tile.replace(/\D/g, '')); // tile number
+  let tile = $(this).attr('id'); // grabs id from tile
+  let tileId = '#' + tile; // add # to front
+  let i = +(tile.replace(/\D/g, '')); // tile index (removes letters)
 
   // Valid Move check
   if (!glob.vars.board[i]) { // if not yet clicked
@@ -69,32 +64,86 @@ const onClick = function (event) {
       glob.vars.board[i] = 'o';
     }
 
-  }
-
-  // TIE GAME CHECK
-  if (!winCheck()) {
-    glob.vars.xTurn = !glob.vars.xTurn; // change teams
     glob.vars.turnCount++;
-    if (glob.vars.turnCount === 9) {
-      console.log('TIE GAME');
-    }
-  } else {
-    $('#tile0').off('click');
-    $('#tile1').off('click');
-    $('#tile2').off('click');
-    $('#tile3').off('click');
-    $('#tile4').off('click');
-    $('#tile5').off('click');
-    $('#tile6').off('click');
-    $('#tile7').off('click');
-    $('#tile8').off('click');
+    glob.vars.xTurn = !glob.vars.xTurn; // change teams
   }
 
+  if (winCheck()) { // on win, turn off click
+    $('.col-xs-4').css('pointer-events', 'none');
+
+  };
+
+  if (glob.vars.turnCount === 9) {   // TIE GAME CHECK
+    console.log('TIE GAME');
+    glob.vars.gameOver = true;
+
+  }
+
+  console.log('xTurn: ' + glob.vars.xTurn);
   console.table(glob.vars.board);
 
 };
 
+const newGame = function () {
+
+  glob.vars.turnCount = 0;
+  glob.vars.board = [];
+  glob.vars.xTurn = true;
+  glob.vars.gameOver = false;
+
+  $('#tile0').html('_');
+  $('#tile1').html('_');
+  $('#tile2').html('_');
+  $('#tile3').html('_');
+  $('#tile4').html('_');
+  $('#tile5').html('_');
+  $('#tile6').html('_');
+  $('#tile7').html('_');
+  $('#tile8').html('_');
+
+  $('.col-xs-4').css('pointer-events', 'auto');
+
+};
+
+const onGetAll = function (event) {
+  event.preventDefault();
+  api.getAll()
+    .then(ui.success)
+    .catch(ui.failure);
+};
+
+const onCreateGame = function (event) {
+  event.preventDefault();
+  api.createGame()
+    .then(ui.success)
+    .catch(ui.failure);
+};
+
+const onFindGame = function (event) {
+  event.preventDefault();
+  api.findGame()
+    .then(ui.success)
+    .catch(ui.failure);
+};
+
+const onJoinGame = function (event) {
+  event.preventDefault();
+  api.joinGame()
+    .then(ui.success)
+    .catch(ui.failure);
+};
+
+const onUpdateGame = function (event) {
+  event.preventDefault();
+  api.onUpdateGame()
+    .then(ui.success)
+    .catch(ui.failure);
+};
+
 const addBoardHandlers = () => {
+
+  $('.col-xs-4').css('pointer-events', 'none');
+
   $('#tile0').on('click', onClick);
   $('#tile1').on('click', onClick);
   $('#tile2').on('click', onClick);
@@ -104,6 +153,7 @@ const addBoardHandlers = () => {
   $('#tile6').on('click', onClick);
   $('#tile7').on('click', onClick);
   $('#tile8').on('click', onClick);
+  $('.new-game-button').on('click', newGame);
 
 };
 
