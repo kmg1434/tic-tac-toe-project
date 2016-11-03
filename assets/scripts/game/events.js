@@ -4,7 +4,6 @@
 const api = require('./api');
 const ui = require('./ui');
 const glob = require('./global.js');
-const vault = require('../vault.js');
 
 const onGetAll = function (event) {
   event.preventDefault();
@@ -105,13 +104,11 @@ const onClick = function (event) {
       $(tileId).html('X');
       glob.vars.board[i] = 'x';
       glob.vars.lastMove = 'x';
-
       onUpdateGame();
     } else {
       $(tileId).html('O');
       glob.vars.board[i] = 'o';
       glob.vars.lastMove = 'o';
-
       onUpdateGame();
     }
 
