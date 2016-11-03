@@ -1,6 +1,6 @@
 'use strict';
 
-const app = require('../app');
+const vault = require('../vault');
 
 // const getFormFields = require('../../../lib/get-form-fields.js');
 
@@ -11,7 +11,7 @@ const app = require('../app');
 const signUp = function (data) {
   console.log(data);
   return $.ajax({
-    url: app.host + '/sign-up/',
+    url: vault.host + '/sign-up/',
     method: 'POST',
     data,
   });
@@ -20,7 +20,7 @@ const signUp = function (data) {
 const signIn = function (data) {
   console.log(data);
   return $.ajax({
-    url: app.host + '/sign-in/',
+    url: vault.host + '/sign-in/',
     method: 'POST',
     data,
   });
@@ -29,9 +29,9 @@ const signIn = function (data) {
 const signOut = function () {
   return $.ajax({
     method: 'DELETE',
-    url: app.host + '/sign-out/' + app.user.id,
+    url: vault.host + '/sign-out/' + vault.user.id,
     headers: {
-      Authorization: 'Token token=' + app.user.token,
+      Authorization: 'Token token=' + vault.user.token,
     },
   });
 };
@@ -39,11 +39,11 @@ const signOut = function () {
 const changePassword = function (data) {
   return $.ajax({
     method: 'PATCH',
-    url: app.host + '/change-password/' + app.user.id,
+    url: vault.host + '/change-password/' + vault.user.id,
     headers: {
-      Authorization: 'Token token=' + app.user.token,
+      Authorization: 'Token token=' + vault.user.token,
     },
-    data: data,
+    data,
   });
 };
 

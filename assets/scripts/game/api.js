@@ -1,59 +1,60 @@
 'use strict';
 
-const app = require('../app');
+const vault = require('../vault.js');
 
-const getAll = function (data) {
+const getAllGames = function (data) {
   return $.ajax({
-    url: app.host + '/games',
+    url: vault.host + '/games',
     method: 'GET',
     headers: {
-      Authorization: 'Token token=' + app.users.token,
+      Authorization: 'Token token=' + vault.user.token,
     },
   });
 };
 
-const createGame = function (data) {
+const createGame = function () {
   return $.ajax({
-    url: app.host + '/games',
+    url: vault.host + '/games',
     method: 'POST',
     headers: {
-      Authorization: 'Token token=' + app.users.token,
+      Authorization: 'Token token=' + vault.user.token,
     },
+    game: {},
   });
 };
 
 const findGame  = function (data) {
   return $.ajax({
-    url: app.host + '/games/' + app.user.id,
+    url: vault.host + '/games/' + vault.user.id,
     method: 'GET',
     headers: {
-      Authorization: 'Token token=' + app.users.token,
+      Authorization: 'Token token=' + vault.user.token,
     },
   });
 };
 
 const joinGame = function (data) {
   return $.ajax({
-    url: app.host + '/games/' + app.user.id,
+    url: vault.host + '/games/' + vault.user.id,
     method: 'PATCH',
     headers: {
-      Authorization: 'Token token=' + app.users.token,
+      Authorization: 'Token token=' + vault.user.token,
     },
   });
 };
 
 const updateGame = function (data) {
   return $.ajax({
-    url: app.host + '/games/' + app.user.id,
+    url: vault.host + '/games/' + vault.user.id,
     method: 'PATCH',
     headers: {
-      Authorization: 'Token token=' + app.users.token,
+      Authorization: 'Token token=' + vault.user.token,
     },
   });
 };
 
 module.exports = {
-  getAll,
+  getAllGames,
   createGame,
   findGame,
   joinGame,

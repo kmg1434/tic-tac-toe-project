@@ -1,18 +1,17 @@
 'use strict';
 
-const app = require('../app.js');
+const vault = require('../vault.js');
 
 const signInSuccess = (data) => {
-  app.user = data.user;
+  vault.user = data.user;
   console.log('Successfully signed in');
-  console.log(app.user);
-  debugger;
+  console.log(vault.user);
 };
 
 const signOutSuccess = () => {
-  app.user = null;
+  vault.user = null;
   console.log('Successfully signed out');
-  console.log(app);
+  console.log(vault);
 };
 
 const changePasswordSuccess = () => {

@@ -1,10 +1,10 @@
 'use strict';
 
-const app = {
+const vault = {
 
 };
 
 module.exports = {
   host: 'http://localhost:4741',
-  app,
+  vault,
 };

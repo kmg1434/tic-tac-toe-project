@@ -86,6 +86,10 @@ const onClick = function (event) {
 
 const newGame = function () {
 
+  // if person is signed in, do all the stuff
+
+  // if (app.user.token === AIP.user.token ) then do stuff!
+
   glob.vars.turnCount = 0;
   glob.vars.board = [];
   glob.vars.xTurn = true;
@@ -154,6 +158,8 @@ const addBoardHandlers = () => {
   $('#tile7').on('click', onClick);
   $('#tile8').on('click', onClick);
   $('.new-game-button').on('click', newGame);
+
+  $('.new-game-button').on('click', onCreateGame);
 
 };
 
