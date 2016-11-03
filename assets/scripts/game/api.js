@@ -3,13 +3,14 @@
 const vault = require('../vault.js');
 const glob = require('./global.js');
 
-const getAllGames = function () {
+const getAllGames = function (player_x) {
   return $.ajax({
     url: vault.host + '/games',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + vault.user.token,
     },
+    player_x,
   });
 };
 

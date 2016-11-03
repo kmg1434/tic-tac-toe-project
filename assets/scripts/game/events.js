@@ -5,10 +5,9 @@ const api = require('./api');
 const ui = require('./ui');
 const glob = require('./global.js');
 
-const onGetAll = function (event) {
-  event.preventDefault();
-  api.getAll()
-    .then(ui.success)
+const onGetAllGames = function (event) {
+  api.getAllGames()
+    .then(ui.getGamesSuccess)
     .catch(ui.failure);
 };
 
@@ -44,7 +43,7 @@ const onUpdateGame = function () {
     },
   };
   api.updateGame(data)
-    .then(ui.success)
+    .then(ui.updateSuccess)
     .catch(ui.failure);
 };
 
@@ -56,33 +55,41 @@ const winCheck = function () {
   // HORIZONTAL CHECKS
   if (b[0] && (b[0] === b[1]) && (b[1] === b[2])) {
     console.log(b[0] + ' wins!');
+    $('.win-message').text(b[0] + ' wins!');
     gameOver = true;
   } else if (b[3] && (b[3] === b[4]) && (b[4] === b[5])) {
     console.log(b[3] + ' wins!');
+    $('.win-message').text(b[3] + ' wins!');
     gameOver = true;
   } else if (b[6] && (b[6] === b[7]) && (b[7] === b[8])) {
     console.log(b[6] + ' wins!');
+    $('.win-message').text(b[6] + ' wins!');
     gameOver = true;
   }
 
   // VERTICAL CHECKS
   if (b[0] && (b[0] === b[3]) && (b[3] === b[6])) {
     console.log(b[0] + ' wins!');
+    $('.win-message').text(b[0] + ' wins!');
     gameOver = true;
   } else if (b[1] && (b[1] === b[4]) && (b[4] === b[7])) {
     console.log(b[1] + ' wins!');
+    $('.win-message').text(b[1] + ' wins!');
     gameOver = true;
   } else if (b[2] && (b[2] === b[5]) && (b[5] === b[8])) {
     console.log(b[2] + ' wins!');
+    $('.win-message').text(b[2] + ' wins!');
     gameOver = true;
   }
 
   // DIAGONAL CHECKS
   if (b[0] && (b[0] === b[4]) && (b[4] === b[8])) {
     console.log(b[0] + ' wins!');
+    $('.win-message').text(b[0] + ' wins!');
     gameOver = true;
   } else if (b[2] && (b[2] === b[4]) && (b[4] === b[6])) {
     console.log(b[2] + ' wins!');
+    $('.win-message').text(b[2] + ' wins!');
     gameOver = true;
   }
 
@@ -134,14 +141,11 @@ const onClick = function (event) {
 
 const newGame = function () {
 
-  // if person is signed in, do all the stuff
-
-  // if (app.user.token === AIP.user.token ) then do stuff!
-
   glob.vars.turnCount = 0;
   glob.vars.board = [];
   glob.vars.xTurn = true;
   glob.vars.gameOver = false;
+  $('.win-message').text('');
 
   $('#tile0').html('_');
   $('#tile1').html('_');
@@ -173,6 +177,7 @@ const addBoardHandlers = () => {
 
   $('.new-game-button').on('click', onCreateGame);
   $('.new-game-button').on('click', newGame);
+  $('.get-games-button').on('click', onGetAllGames);
 
 };
 
