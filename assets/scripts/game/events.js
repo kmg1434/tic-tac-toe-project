@@ -157,9 +157,9 @@ const addBoardHandlers = () => {
   $('#tile6').on('click', onClick);
   $('#tile7').on('click', onClick);
   $('#tile8').on('click', onClick);
-  $('.new-game-button').on('click', newGame);
 
   $('.new-game-button').on('click', onCreateGame);
+  $('.new-game-button').on('click', newGame);
 
 };
 
