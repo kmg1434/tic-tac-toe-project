@@ -7,6 +7,8 @@ const vars = {
   turnCount: 0,
   gameOver: false,
   board: [],
+  lastI: 0,
+  lastMove: '',
 
 };
 

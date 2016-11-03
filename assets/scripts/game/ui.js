@@ -7,6 +7,11 @@ const success = (data) => {
   console.log(data);
 };
 
+const updateSuccess = (data) => {
+  vault.game = data.game;
+  console.log(data);
+};
+
 const failure = (error) => {
   console.error(error);
 };
@@ -14,4 +19,5 @@ const failure = (error) => {
 module.exports = {
   failure,
   success,
+  updateSuccess,
 };

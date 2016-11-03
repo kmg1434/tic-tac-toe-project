@@ -1,8 +1,9 @@
 'use strict';
 
 const vault = require('../vault.js');
+const glob = require('./global.js');
 
-const getAllGames = function (data) {
+const getAllGames = function () {
   return $.ajax({
     url: vault.host + '/games',
     method: 'GET',
@@ -12,7 +13,7 @@ const getAllGames = function (data) {
   });
 };
 
-const createGame = function () {
+const createGame = function () { // works!
   return $.ajax({
     url: vault.host + '/games',
     method: 'POST',
@@ -23,40 +24,18 @@ const createGame = function () {
   });
 };
 
-const findGame  = function (data) {
-  return $.ajax({
-    url: vault.host + '/games/' + vault.user.id,
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + vault.user.token,
-    },
-  });
-};
-
-const joinGame = function (data) {
-  return $.ajax({
+const updateGame = (data) =>
+  $.ajax({
     url: vault.host + '/games/' + vault.user.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + vault.user.token,
     },
+    data,
   });
-};
-
-const updateGame = function (data) {
-  return $.ajax({
-    url: vault.host + '/games/' + vault.user.id,
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Token token=' + vault.user.token,
-    },
-  });
-};
 
 module.exports = {
-  getAllGames,
   createGame,
-  findGame,
-  joinGame,
   updateGame,
+  getAllGames,
 };

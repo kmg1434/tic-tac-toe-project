@@ -4,6 +4,50 @@
 const api = require('./api');
 const ui = require('./ui');
 const glob = require('./global.js');
+const vault = require('../vault.js');
+
+const onGetAll = function (event) {
+  event.preventDefault();
+  api.getAll()
+    .then(ui.success)
+    .catch(ui.failure);
+};
+
+const onCreateGame = function (event) {
+  event.preventDefault();
+  api.createGame()
+    .then(ui.success)
+    .catch(ui.failure);
+};
+
+const onFindGame = function (event) {
+  event.preventDefault();
+  api.findGame()
+    .then(ui.success)
+    .catch(ui.failure);
+};
+
+const onJoinGame = function (event) {
+  event.preventDefault();
+  api.joinGame()
+    .then(ui.success)
+    .catch(ui.failure);
+};
+
+const onUpdateGame = function () {
+  let data = {
+    'game': {
+      'cell': {
+        'index': glob.vars.lastI,
+        'value': glob.vars.lastMove,
+      },
+      'over': glob.vars.gameOver,
+    },
+  };
+  api.updateGame(data)
+    .then(ui.success)
+    .catch(ui.failure);
+};
 
 const winCheck = function () {
 
@@ -53,20 +97,30 @@ const onClick = function (event) {
   let tile = $(this).attr('id'); // grabs id from tile
   let tileId = '#' + tile; // add # to front
   let i = +(tile.replace(/\D/g, '')); // tile index (removes letters)
+  glob.vars.lastI = i;
 
   // Valid Move check
   if (!glob.vars.board[i]) { // if not yet clicked
     if (glob.vars.xTurn) {
       $(tileId).html('X');
       glob.vars.board[i] = 'x';
+      glob.vars.lastMove = 'x';
+
+      onUpdateGame();
     } else {
       $(tileId).html('O');
       glob.vars.board[i] = 'o';
+      glob.vars.lastMove = 'o';
+
+      onUpdateGame();
     }
 
     glob.vars.turnCount++;
     glob.vars.xTurn = !glob.vars.xTurn; // change teams
   }
+
+  //console.log('last move: ' + glob.vars.lastMove);
+  //console.log('last index: ' + glob.vars.lastI);
 
   if (winCheck()) { // on win, turn off click
     $('.col-xs-4').css('pointer-events', 'none');
@@ -78,9 +132,6 @@ const onClick = function (event) {
     glob.vars.gameOver = true;
 
   }
-
-  console.log('xTurn: ' + glob.vars.xTurn);
-  console.table(glob.vars.board);
 
 };
 
@@ -107,41 +158,6 @@ const newGame = function () {
 
   $('.col-xs-4').css('pointer-events', 'auto');
 
-};
-
-const onGetAll = function (event) {
-  event.preventDefault();
-  api.getAll()
-    .then(ui.success)
-    .catch(ui.failure);
-};
-
-const onCreateGame = function (event) {
-  event.preventDefault();
-  api.createGame()
-    .then(ui.success)
-    .catch(ui.failure);
-};
-
-const onFindGame = function (event) {
-  event.preventDefault();
-  api.findGame()
-    .then(ui.success)
-    .catch(ui.failure);
-};
-
-const onJoinGame = function (event) {
-  event.preventDefault();
-  api.joinGame()
-    .then(ui.success)
-    .catch(ui.failure);
-};
-
-const onUpdateGame = function (event) {
-  event.preventDefault();
-  api.onUpdateGame()
-    .then(ui.success)
-    .catch(ui.failure);
 };
 
 const addBoardHandlers = () => {
