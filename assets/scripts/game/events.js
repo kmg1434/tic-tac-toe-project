@@ -18,19 +18,19 @@ const onCreateGame = function (event) {
     .catch(ui.failure);
 };
 
-const onFindGame = function (event) {
-  event.preventDefault();
-  api.findGame()
-    .then(ui.success)
-    .catch(ui.failure);
-};
+// const onFindGame = function (event) {
+//   event.preventDefault();
+//   api.findGame()
+//     .then(ui.success)
+//     .catch(ui.failure);
+// };
 
-const onJoinGame = function (event) {
-  event.preventDefault();
-  api.joinGame()
-    .then(ui.success)
-    .catch(ui.failure);
-};
+// const onJoinGame = function (event) {
+//   event.preventDefault();
+//   api.joinGame()
+//     .then(ui.success)
+//     .catch(ui.failure);
+// };
 
 const onUpdateGame = function () {
   let data = {
@@ -95,6 +95,8 @@ const winCheck = function () {
 
   return gameOver;
 };
+
+
 
 const onClick = function (event) {
 
