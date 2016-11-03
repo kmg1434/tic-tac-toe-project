@@ -11,8 +11,6 @@ const success = (data) => {
 const getGamesSuccess = (data) => {
   vault.game = data.game;
   console.log(data);
-
-  // show total amount of games
   $('.stats-message')
   .text("You've played " + data.games.length + ' games');
   console.log('get Game success');

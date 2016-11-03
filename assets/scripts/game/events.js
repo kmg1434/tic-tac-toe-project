@@ -133,6 +133,7 @@ const onClick = function (event) {
 
   if (glob.vars.turnCount === 9) {   // TIE GAME CHECK
     console.log('TIE GAME');
+    $('.tie-message').text('tie game!');
     glob.vars.gameOver = true;
 
   }
@@ -146,6 +147,8 @@ const newGame = function () {
   glob.vars.xTurn = true;
   glob.vars.gameOver = false;
   $('.win-message').text('');
+  $('.tie-message').text('');
+  $('.stats-message').text('');
 
   $('#tile0').html('_');
   $('#tile1').html('_');
