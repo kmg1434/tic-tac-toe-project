@@ -164,7 +164,7 @@ webpackJsonp([0],[
 	var vault = {};
 
 	module.exports = {
-	  host: 'https://aqueous-atoll-85096.herokuapp.com/',
+	  host: 'https://aqueous-atoll-85096.herokuapp.com',
 	  vault: vault
 	};
 
@@ -178,26 +178,26 @@ webpackJsonp([0],[
 
 	var signInSuccess = function signInSuccess(data) {
 	  vault.user = data.user;
-	  console.log('Successfully signed in');
-	  console.log(vault.user);
+	  //console.log('Successfully signed in');
+	  //console.log(vault.user);
 	};
 
 	var signOutSuccess = function signOutSuccess() {
 	  vault.user = null;
-	  console.log('Successfully signed out');
-	  console.log(vault);
+	  //console.log('Successfully signed out');
+	  //console.log(vault);
 	};
 
 	var changePasswordSuccess = function changePasswordSuccess() {
-	  console.log('Password Successfully Changed.');
+	  //console.log('Password Successfully Changed.');
 	};
 
-	var success = function success(data) {
-	  console.log(data);
+	var success = function success() {
+	  //console.log(data);
 	};
 
-	var failure = function failure(error) {
-	  console.error(error);
+	var failure = function failure() {
+	  //console.error(error);
 	};
 
 	module.exports = {
@@ -295,20 +295,6 @@ webpackJsonp([0],[
 	  api.createGame().then(ui.success).catch(ui.createGameFailure);
 	};
 
-	// const onFindGame = function (event) {
-	//   event.preventDefault();
-	//   api.findGame()
-	//     .then(ui.success)
-	//     .catch(ui.failure);
-	// };
-
-	// const onJoinGame = function (event) {
-	//   event.preventDefault();
-	//   api.joinGame()
-	//     .then(ui.success)
-	//     .catch(ui.failure);
-	// };
-
 	var onUpdateGame = function onUpdateGame() {
 	  var data = {
 	    'game': {
@@ -329,41 +315,41 @@ webpackJsonp([0],[
 
 	  // HORIZONTAL CHECKS
 	  if (b[0] && b[0] === b[1] && b[1] === b[2]) {
-	    console.log(b[0] + ' wins!');
+	    //console.log(b[0] + ' wins!');
 	    $('.win-message').text(b[0] + ' wins!');
 	    gameOver = true;
 	  } else if (b[3] && b[3] === b[4] && b[4] === b[5]) {
-	    console.log(b[3] + ' wins!');
+	    //console.log(b[3] + ' wins!');
 	    $('.win-message').text(b[3] + ' wins!');
 	    gameOver = true;
 	  } else if (b[6] && b[6] === b[7] && b[7] === b[8]) {
-	    console.log(b[6] + ' wins!');
+	    //console.log(b[6] + ' wins!');
 	    $('.win-message').text(b[6] + ' wins!');
 	    gameOver = true;
 	  }
 
 	  // VERTICAL CHECKS
 	  if (b[0] && b[0] === b[3] && b[3] === b[6]) {
-	    console.log(b[0] + ' wins!');
+	    //console.log(b[0] + ' wins!');
 	    $('.win-message').text(b[0] + ' wins!');
 	    gameOver = true;
 	  } else if (b[1] && b[1] === b[4] && b[4] === b[7]) {
-	    console.log(b[1] + ' wins!');
+	    //console.log(b[1] + ' wins!');
 	    $('.win-message').text(b[1] + ' wins!');
 	    gameOver = true;
 	  } else if (b[2] && b[2] === b[5] && b[5] === b[8]) {
-	    console.log(b[2] + ' wins!');
+	    //console.log(b[2] + ' wins!');
 	    $('.win-message').text(b[2] + ' wins!');
 	    gameOver = true;
 	  }
 
 	  // DIAGONAL CHECKS
 	  if (b[0] && b[0] === b[4] && b[4] === b[8]) {
-	    console.log(b[0] + ' wins!');
+	    //console.log(b[0] + ' wins!');
 	    $('.win-message').text(b[0] + ' wins!');
 	    gameOver = true;
 	  } else if (b[2] && b[2] === b[4] && b[4] === b[6]) {
-	    console.log(b[2] + ' wins!');
+	    //console.log(b[2] + ' wins!');
 	    $('.win-message').text(b[2] + ' wins!');
 	    gameOver = true;
 	  }
@@ -406,7 +392,7 @@ webpackJsonp([0],[
 
 	  if (glob.vars.turnCount === 9) {
 	    // TIE GAME CHECK
-	    console.log('TIE GAME');
+	    //console.log('TIE GAME');
 	    $('.tie-message').text('tie game!');
 	    glob.vars.gameOver = true;
 	  }
