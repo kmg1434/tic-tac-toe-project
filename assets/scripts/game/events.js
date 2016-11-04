@@ -4,6 +4,7 @@
 const api = require('./api');
 const ui = require('./ui');
 const glob = require('./global.js');
+const vault = require('../vault.js');
 
 const onGetAllGames = function (event) {
   api.getAllGames()
@@ -15,7 +16,7 @@ const onCreateGame = function (event) {
   event.preventDefault();
   api.createGame()
     .then(ui.success)
-    .catch(ui.failure);
+    .catch(ui.createGameFailure);
 };
 
 // const onFindGame = function (event) {
@@ -96,8 +97,6 @@ const winCheck = function () {
   return gameOver;
 };
 
-
-
 const onClick = function (event) {
 
   event.preventDefault();
@@ -125,13 +124,10 @@ const onClick = function (event) {
     glob.vars.xTurn = !glob.vars.xTurn; // change teams
   }
 
-  //console.log('last move: ' + glob.vars.lastMove);
-  //console.log('last index: ' + glob.vars.lastI);
-
   if (winCheck()) { // on win, turn off click
     $('.col-xs-4').css('pointer-events', 'none');
 
-  };
+  }
 
   if (glob.vars.turnCount === 9) {   // TIE GAME CHECK
     console.log('TIE GAME');
@@ -151,6 +147,7 @@ const newGame = function () {
   $('.win-message').text('');
   $('.tie-message').text('');
   $('.stats-message').text('');
+  $('.login-alert').text('');
 
   $('#tile0').html('_');
   $('#tile1').html('_');

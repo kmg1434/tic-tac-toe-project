@@ -23,6 +23,12 @@ const updateSuccess = (data) => {
 
 const failure = (error) => {
   console.error(error);
+  $('.login-alert').text('Please register and sign in before playing!');
+};
+
+const createGameFailure = (error) => {
+  console.error(error);
+  $('.login-alert').text('Please register and sign in before playing!');
 };
 
 module.exports = {
@@ -30,4 +36,5 @@ module.exports = {
   success,
   updateSuccess,
   getGamesSuccess,
+  createGameFailure
 };
