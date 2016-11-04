@@ -19,20 +19,6 @@ const onCreateGame = function (event) {
     .catch(ui.createGameFailure);
 };
 
-// const onFindGame = function (event) {
-//   event.preventDefault();
-//   api.findGame()
-//     .then(ui.success)
-//     .catch(ui.failure);
-// };
-
-// const onJoinGame = function (event) {
-//   event.preventDefault();
-//   api.joinGame()
-//     .then(ui.success)
-//     .catch(ui.failure);
-// };
-
 const onUpdateGame = function () {
   let data = {
     'game': {
@@ -55,41 +41,41 @@ const winCheck = function () {
 
   // HORIZONTAL CHECKS
   if (b[0] && (b[0] === b[1]) && (b[1] === b[2])) {
-    console.log(b[0] + ' wins!');
+    //console.log(b[0] + ' wins!');
     $('.win-message').text(b[0] + ' wins!');
     gameOver = true;
   } else if (b[3] && (b[3] === b[4]) && (b[4] === b[5])) {
-    console.log(b[3] + ' wins!');
+    //console.log(b[3] + ' wins!');
     $('.win-message').text(b[3] + ' wins!');
     gameOver = true;
   } else if (b[6] && (b[6] === b[7]) && (b[7] === b[8])) {
-    console.log(b[6] + ' wins!');
+    //console.log(b[6] + ' wins!');
     $('.win-message').text(b[6] + ' wins!');
     gameOver = true;
   }
 
   // VERTICAL CHECKS
   if (b[0] && (b[0] === b[3]) && (b[3] === b[6])) {
-    console.log(b[0] + ' wins!');
+    //console.log(b[0] + ' wins!');
     $('.win-message').text(b[0] + ' wins!');
     gameOver = true;
   } else if (b[1] && (b[1] === b[4]) && (b[4] === b[7])) {
-    console.log(b[1] + ' wins!');
+    //console.log(b[1] + ' wins!');
     $('.win-message').text(b[1] + ' wins!');
     gameOver = true;
   } else if (b[2] && (b[2] === b[5]) && (b[5] === b[8])) {
-    console.log(b[2] + ' wins!');
+    //console.log(b[2] + ' wins!');
     $('.win-message').text(b[2] + ' wins!');
     gameOver = true;
   }
 
   // DIAGONAL CHECKS
   if (b[0] && (b[0] === b[4]) && (b[4] === b[8])) {
-    console.log(b[0] + ' wins!');
+    //console.log(b[0] + ' wins!');
     $('.win-message').text(b[0] + ' wins!');
     gameOver = true;
   } else if (b[2] && (b[2] === b[4]) && (b[4] === b[6])) {
-    console.log(b[2] + ' wins!');
+    //console.log(b[2] + ' wins!');
     $('.win-message').text(b[2] + ' wins!');
     gameOver = true;
   }
@@ -130,7 +116,7 @@ const onClick = function (event) {
   }
 
   if (glob.vars.turnCount === 9) {   // TIE GAME CHECK
-    console.log('TIE GAME');
+    //console.log('TIE GAME');
     $('.tie-message').text('tie game!');
     glob.vars.gameOver = true;
 

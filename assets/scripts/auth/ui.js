@@ -4,26 +4,26 @@ const vault = require('../vault.js');
 
 const signInSuccess = (data) => {
   vault.user = data.user;
-  console.log('Successfully signed in');
-  console.log(vault.user);
+  //console.log('Successfully signed in');
+  //console.log(vault.user);
 };
 
 const signOutSuccess = () => {
   vault.user = null;
-  console.log('Successfully signed out');
-  console.log(vault);
+  //console.log('Successfully signed out');
+  //console.log(vault);
 };
 
 const changePasswordSuccess = () => {
-  console.log('Password Successfully Changed.');
+  //console.log('Password Successfully Changed.');
 };
 
 const success = (data) => {
-  console.log(data);
+  //console.log(data);
 };
 
 const failure = (error) => {
-  console.error(error);
+  //console.error(error);
 };
 
 module.exports = {
