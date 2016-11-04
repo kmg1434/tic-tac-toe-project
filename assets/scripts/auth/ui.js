@@ -18,11 +18,11 @@ const changePasswordSuccess = () => {
   //console.log('Password Successfully Changed.');
 };
 
-const success = (data) => {
+const success = () => {
   //console.log(data);
 };
 
-const failure = (error) => {
+const failure = () => {
   //console.error(error);
 };
 
