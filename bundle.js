@@ -100,7 +100,7 @@ webpackJsonp([0],[
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var app = __webpack_require__(6);
+	var vault = __webpack_require__(6);
 
 	// const getFormFields = require('../../../lib/get-form-fields.js');
 
@@ -111,7 +111,7 @@ webpackJsonp([0],[
 	var signUp = function signUp(data) {
 	  console.log(data);
 	  return $.ajax({
-	    url: app.host + '/sign-up/',
+	    url: vault.host + '/sign-up/',
 	    method: 'POST',
 	    data: data
 	  });
@@ -120,7 +120,7 @@ webpackJsonp([0],[
 	var signIn = function signIn(data) {
 	  console.log(data);
 	  return $.ajax({
-	    url: app.host + '/sign-in/',
+	    url: vault.host + '/sign-in/',
 	    method: 'POST',
 	    data: data
 	  });
@@ -129,9 +129,9 @@ webpackJsonp([0],[
 	var signOut = function signOut() {
 	  return $.ajax({
 	    method: 'DELETE',
-	    url: app.host + '/sign-out/' + app.user.id,
+	    url: vault.host + '/sign-out/' + vault.user.id,
 	    headers: {
-	      Authorization: 'Token token=' + app.user.token
+	      Authorization: 'Token token=' + vault.user.token
 	    }
 	  });
 	};
@@ -139,9 +139,9 @@ webpackJsonp([0],[
 	var changePassword = function changePassword(data) {
 	  return $.ajax({
 	    method: 'PATCH',
-	    url: app.host + '/change-password/' + app.user.id,
+	    url: vault.host + '/change-password/' + vault.user.id,
 	    headers: {
-	      Authorization: 'Token token=' + app.user.token
+	      Authorization: 'Token token=' + vault.user.token
 	    },
 	    data: data
 	  });
@@ -161,11 +161,11 @@ webpackJsonp([0],[
 
 	'use strict';
 
-	var app = {};
+	var vault = {};
 
 	module.exports = {
-	  host: 'http://localhost:4741',
-	  app: app
+	  host: 'https://aqueous-atoll-85096.herokuapp.com/',
+	  vault: vault
 	};
 
 /***/ },
@@ -174,19 +174,18 @@ webpackJsonp([0],[
 
 	'use strict';
 
-	var app = __webpack_require__(6);
+	var vault = __webpack_require__(6);
 
 	var signInSuccess = function signInSuccess(data) {
-	  app.user = data.user;
+	  vault.user = data.user;
 	  console.log('Successfully signed in');
-	  console.log(app.user);
-	  debugger;
+	  console.log(vault.user);
 	};
 
 	var signOutSuccess = function signOutSuccess() {
-	  app.user = null;
+	  vault.user = null;
 	  console.log('Successfully signed out');
-	  console.log(app);
+	  console.log(vault);
 	};
 
 	var changePasswordSuccess = function changePasswordSuccess() {
@@ -283,8 +282,44 @@ webpackJsonp([0],[
 	// const getFormFields = require('../../../lib/get-form-fields.js');
 
 	var api = __webpack_require__(10);
-	var ui = __webpack_require__(11);
-	var glob = __webpack_require__(12);
+	var ui = __webpack_require__(12);
+	var glob = __webpack_require__(11);
+
+	var onGetAllGames = function onGetAllGames(event) {
+	  api.getAllGames().then(ui.getGamesSuccess).catch(ui.failure);
+	};
+
+	var onCreateGame = function onCreateGame(event) {
+	  event.preventDefault();
+	  api.createGame().then(ui.success).catch(ui.failure);
+	};
+
+	// const onFindGame = function (event) {
+	//   event.preventDefault();
+	//   api.findGame()
+	//     .then(ui.success)
+	//     .catch(ui.failure);
+	// };
+
+	// const onJoinGame = function (event) {
+	//   event.preventDefault();
+	//   api.joinGame()
+	//     .then(ui.success)
+	//     .catch(ui.failure);
+	// };
+
+	var onUpdateGame = function onUpdateGame() {
+	  var data = {
+	    'game': {
+	      'cell': {
+	        'index': glob.vars.lastI,
+	        'value': glob.vars.lastMove
+	      },
+	      'over': glob.vars.gameOver
+	    }
+	  };
+	  api.updateGame(data).then(ui.updateSuccess).catch(ui.failure);
+	};
 
 	var winCheck = function winCheck() {
 
@@ -294,33 +329,41 @@ webpackJsonp([0],[
 	  // HORIZONTAL CHECKS
 	  if (b[0] && b[0] === b[1] && b[1] === b[2]) {
 	    console.log(b[0] + ' wins!');
+	    $('.win-message').text(b[0] + ' wins!');
 	    gameOver = true;
 	  } else if (b[3] && b[3] === b[4] && b[4] === b[5]) {
 	    console.log(b[3] + ' wins!');
+	    $('.win-message').text(b[3] + ' wins!');
 	    gameOver = true;
 	  } else if (b[6] && b[6] === b[7] && b[7] === b[8]) {
 	    console.log(b[6] + ' wins!');
+	    $('.win-message').text(b[6] + ' wins!');
 	    gameOver = true;
 	  }
 
 	  // VERTICAL CHECKS
 	  if (b[0] && b[0] === b[3] && b[3] === b[6]) {
 	    console.log(b[0] + ' wins!');
+	    $('.win-message').text(b[0] + ' wins!');
 	    gameOver = true;
 	  } else if (b[1] && b[1] === b[4] && b[4] === b[7]) {
 	    console.log(b[1] + ' wins!');
+	    $('.win-message').text(b[1] + ' wins!');
 	    gameOver = true;
 	  } else if (b[2] && b[2] === b[5] && b[5] === b[8]) {
 	    console.log(b[2] + ' wins!');
+	    $('.win-message').text(b[2] + ' wins!');
 	    gameOver = true;
 	  }
 
 	  // DIAGONAL CHECKS
 	  if (b[0] && b[0] === b[4] && b[4] === b[8]) {
 	    console.log(b[0] + ' wins!');
+	    $('.win-message').text(b[0] + ' wins!');
 	    gameOver = true;
 	  } else if (b[2] && b[2] === b[4] && b[4] === b[6]) {
 	    console.log(b[2] + ' wins!');
+	    $('.win-message').text(b[2] + ' wins!');
 	    gameOver = true;
 	  }
 
@@ -334,6 +377,7 @@ webpackJsonp([0],[
 	  var tile = $(this).attr('id'); // grabs id from tile
 	  var tileId = '#' + tile; // add # to front
 	  var i = +tile.replace(/\D/g, ''); // tile index (removes letters)
+	  glob.vars.lastI = i;
 
 	  // Valid Move check
 	  if (!glob.vars.board[i]) {
@@ -341,14 +385,21 @@ webpackJsonp([0],[
 	    if (glob.vars.xTurn) {
 	      $(tileId).html('X');
 	      glob.vars.board[i] = 'x';
+	      glob.vars.lastMove = 'x';
+	      onUpdateGame();
 	    } else {
 	      $(tileId).html('O');
 	      glob.vars.board[i] = 'o';
+	      glob.vars.lastMove = 'o';
+	      onUpdateGame();
 	    }
 
 	    glob.vars.turnCount++;
 	    glob.vars.xTurn = !glob.vars.xTurn; // change teams
 	  }
+
+	  //console.log('last move: ' + glob.vars.lastMove);
+	  //console.log('last index: ' + glob.vars.lastI);
 
 	  if (winCheck()) {
 	    // on win, turn off click
@@ -358,11 +409,9 @@ webpackJsonp([0],[
 	  if (glob.vars.turnCount === 9) {
 	    // TIE GAME CHECK
 	    console.log('TIE GAME');
+	    $('.tie-message').text('tie game!');
 	    glob.vars.gameOver = true;
 	  }
-
-	  console.log('xTurn: ' + glob.vars.xTurn);
-	  console.table(glob.vars.board);
 	};
 
 	var newGame = function newGame() {
@@ -371,6 +420,9 @@ webpackJsonp([0],[
 	  glob.vars.board = [];
 	  glob.vars.xTurn = true;
 	  glob.vars.gameOver = false;
+	  $('.win-message').text('');
+	  $('.tie-message').text('');
+	  $('.stats-message').text('');
 
 	  $('#tile0').html('_');
 	  $('#tile1').html('_');
@@ -383,31 +435,6 @@ webpackJsonp([0],[
 	  $('#tile8').html('_');
 
 	  $('.col-xs-4').css('pointer-events', 'auto');
-	};
-
-	var onGetAll = function onGetAll(event) {
-	  event.preventDefault();
-	  api.getAll().then(ui.success).catch(ui.failure);
-	};
-
-	var onCreateGame = function onCreateGame(event) {
-	  event.preventDefault();
-	  api.createGame().then(ui.success).catch(ui.failure);
-	};
-
-	var onFindGame = function onFindGame(event) {
-	  event.preventDefault();
-	  api.findGame().then(ui.success).catch(ui.failure);
-	};
-
-	var onJoinGame = function onJoinGame(event) {
-	  event.preventDefault();
-	  api.joinGame().then(ui.success).catch(ui.failure);
-	};
-
-	var onUpdateGame = function onUpdateGame(event) {
-	  event.preventDefault();
-	  api.onUpdateGame().then(ui.success).catch(ui.failure);
 	};
 
 	var addBoardHandlers = function addBoardHandlers() {
@@ -423,7 +450,10 @@ webpackJsonp([0],[
 	  $('#tile6').on('click', onClick);
 	  $('#tile7').on('click', onClick);
 	  $('#tile8').on('click', onClick);
+
+	  $('.new-game-button').on('click', onCreateGame);
 	  $('.new-game-button').on('click', newGame);
+	  $('.get-games-button').on('click', onGetAllGames);
 	};
 
 	module.exports = {
@@ -437,75 +467,52 @@ webpackJsonp([0],[
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var app = __webpack_require__(6);
+	var vault = __webpack_require__(6);
+	var glob = __webpack_require__(11);
 
-	var getAll = function getAll(data) {
+	var getAllGames = function getAllGames(player_x) {
 	  return $.ajax({
-	    url: app.host + '/games',
+	    url: vault.host + '/games',
 	    method: 'GET',
 	    headers: {
-	      Authorization: 'Token token=' + app.users.token
-	    }
+	      Authorization: 'Token token=' + vault.user.token
+	    },
+	    player_x: player_x
 	  });
 	};
 
-	var createGame = function createGame(data) {
+	var createGame = function createGame() {
+	  // works!
 	  return $.ajax({
-	    url: app.host + '/games',
+	    url: vault.host + '/games',
 	    method: 'POST',
 	    headers: {
-	      Authorization: 'Token token=' + app.users.token
-	    }
-	  });
-	};
-
-	var findGame = function findGame(data) {
-	  return $.ajax({
-	    url: app.host + '/games/' + app.user.id,
-	    method: 'GET',
-	    headers: {
-	      Authorization: 'Token token=' + app.users.token
-	    }
-	  });
-	};
-
-	var joinGame = function joinGame(data) {
-	  return $.ajax({
-	    url: app.host + '/games/' + app.user.id,
-	    method: 'PATCH',
-	    headers: {
-	      Authorization: 'Token token=' + app.users.token
-	    }
+	      Authorization: 'Token token=' + vault.user.token
+	    },
+	    game: {}
 	  });
 	};
 
 	var updateGame = function updateGame(data) {
 	  return $.ajax({
-	    url: app.host + '/games/' + app.user.id,
+	    url: vault.host + '/games/' + vault.user.id,
 	    method: 'PATCH',
 	    headers: {
-	      Authorization: 'Token token=' + app.users.token
-	    }
+	      Authorization: 'Token token=' + vault.user.token
+	    },
+	    data: data
 	  });
 	};
 
 	module.exports = {
-	  getAll: getAll,
 	  createGame: createGame,
-	  findGame: findGame,
-	  joinGame: joinGame,
-	  updateGame: updateGame
+	  updateGame: updateGame,
+	  getAllGames: getAllGames
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 11 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-/***/ },
-/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -517,13 +524,53 @@ webpackJsonp([0],[
 	  xTurn: true,
 	  turnCount: 0,
 	  gameOver: false,
-	  board: []
+	  board: [],
+	  lastI: 0,
+	  lastMove: ''
 
 	};
 
 	module.exports = {
 	  vars: vars
 	};
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var vault = __webpack_require__(6);
+
+	var success = function success(data) {
+	  vault.game = data.game;
+	  console.log(data);
+	  console.log('create success');
+	};
+
+	var getGamesSuccess = function getGamesSuccess(data) {
+	  vault.game = data.game;
+	  console.log(data);
+	  $('.stats-message').text("You've played " + data.games.length + ' games');
+	  console.log('get Game success');
+	};
+
+	var updateSuccess = function updateSuccess(data) {
+	  vault.game = data.game;
+	  console.log(data);
+	};
+
+	var failure = function failure(error) {
+	  console.error(error);
+	};
+
+	module.exports = {
+	  failure: failure,
+	  success: success,
+	  updateSuccess: updateSuccess,
+	  getGamesSuccess: getGamesSuccess
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 13 */
