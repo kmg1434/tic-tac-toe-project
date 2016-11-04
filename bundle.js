@@ -529,29 +529,29 @@ webpackJsonp([0],[
 
 	var success = function success(data) {
 	  vault.game = data.game;
-	  console.log(data);
-	  console.log('create success');
+	  //console.log(data);
+	  //console.log('create success');
 	};
 
 	var getGamesSuccess = function getGamesSuccess(data) {
 	  vault.game = data.game;
-	  console.log(data);
+	  //console.log(data);
 	  $('.stats-message').text("You've played " + data.games.length + ' games');
 	  console.log('get Game success');
 	};
 
 	var updateSuccess = function updateSuccess(data) {
 	  vault.game = data.game;
-	  console.log(data);
+	  //console.log(data);
 	};
 
 	var failure = function failure(error) {
-	  console.error(error);
+	  //console.error(error);
 	  $('.login-alert').text('Please register and sign in before playing!');
 	};
 
 	var createGameFailure = function createGameFailure(error) {
-	  console.error(error);
+	  //console.error(error);
 	  $('.login-alert').text('Please register and sign in before playing!');
 	};
 
