@@ -3,18 +3,17 @@
 const vault = require('../vault.js');
 const glob = require('./global.js');
 
-const getAllGames = function (player_x) {
+const getAllGames = function () {
   return $.ajax({
     url: vault.host + '/games',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + vault.user.token,
     },
-    player_x,
   });
 };
 
-const createGame = function () { // works!
+const createGame = function () {
   return $.ajax({
     url: vault.host + '/games',
     method: 'POST',
@@ -25,8 +24,8 @@ const createGame = function () { // works!
   });
 };
 
-const updateGame = (data) =>
-  $.ajax({
+const updateGame = function (data) {
+  return $.ajax({
     url: vault.host + '/games/' + vault.user.id,
     method: 'PATCH',
     headers: {
@@ -34,6 +33,7 @@ const updateGame = (data) =>
     },
     data,
   });
+};
 
 module.exports = {
   createGame,

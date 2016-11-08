@@ -4,6 +4,8 @@ const vault = require('../vault.js');
 
 const success = (data) => {
   vault.game = data.game;
+  $('.login-alert').text('');
+
   //console.log(data);
   //console.log('create success');
 };
@@ -13,7 +15,7 @@ const getGamesSuccess = (data) => {
   //console.log(data);
   $('.stats-message')
   .text("You've played " + data.games.length + ' games');
-  console.log('get Game success');
+  //console.log('get Game success');
 };
 
 const updateSuccess = (data) => {
@@ -23,7 +25,7 @@ const updateSuccess = (data) => {
 
 const failure = (error) => {
   //console.error(error);
-  $('.login-alert').text('Please register and sign in before playing!');
+  //$('.login-alert').text('Please register and sign in before playing!');
 };
 
 const createGameFailure = (error) => {

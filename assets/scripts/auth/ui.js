@@ -10,6 +10,9 @@ const signInSuccess = (data) => {
 
 const signOutSuccess = () => {
   vault.user = null;
+  $('.stats-message').text('');
+  $('.win-message').text('');
+
   //console.log('Successfully signed out');
   //console.log(vault);
 };

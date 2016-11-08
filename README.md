@@ -49,11 +49,11 @@ helpful for making sure my API functionality was correct.
 
 ## User Stories
 
-As a user I can sign up, sign in, sign out, and change Password
-As a user I can create X and O markers on the board
-As a user I can win, lose, or tie the game
-As a user I can see how many games I have played
-As a user I will know intuitively how to use the interface
+-As a user I can sign up, sign in, sign out, and change Password
+-As a user I can create X and O markers on the board
+-As a user I can win, lose, or tie the game
+-As a user I can see how many games I have played
+-As a user I will know intuitively how to use the interface
 
 ## Wireframes
 
