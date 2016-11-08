@@ -26,7 +26,7 @@ const createGame = function () {
 
 const updateGame = function (data) {
   return $.ajax({
-    url: vault.host + '/games/' + vault.user.id,
+    url: vault.host + '/games/' + vault.game.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + vault.user.token,
