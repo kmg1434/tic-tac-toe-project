@@ -172,7 +172,7 @@ webpackJsonp([0],[
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var vault = __webpack_require__(6);
 
@@ -184,6 +184,9 @@ webpackJsonp([0],[
 
 	var signOutSuccess = function signOutSuccess() {
 	  vault.user = null;
+	  $('.stats-message').text('');
+	  $('.win-message').text('');
+
 	  //console.log('Successfully signed out');
 	  //console.log(vault);
 	};
@@ -207,6 +210,7 @@ webpackJsonp([0],[
 	  signOutSuccess: signOutSuccess,
 	  changePasswordSuccess: changePasswordSuccess
 	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 8 */
@@ -284,9 +288,8 @@ webpackJsonp([0],[
 	var api = __webpack_require__(10);
 	var ui = __webpack_require__(12);
 	var glob = __webpack_require__(11);
-	var vault = __webpack_require__(6);
 
-	var onGetAllGames = function onGetAllGames(event) {
+	var onGetAllGames = function onGetAllGames() {
 	  api.getAllGames().then(ui.getGamesSuccess).catch(ui.failure);
 	};
 
@@ -315,41 +318,33 @@ webpackJsonp([0],[
 
 	  // HORIZONTAL CHECKS
 	  if (b[0] && b[0] === b[1] && b[1] === b[2]) {
-	    //console.log(b[0] + ' wins!');
 	    $('.win-message').text(b[0] + ' wins!');
 	    gameOver = true;
 	  } else if (b[3] && b[3] === b[4] && b[4] === b[5]) {
-	    //console.log(b[3] + ' wins!');
 	    $('.win-message').text(b[3] + ' wins!');
 	    gameOver = true;
 	  } else if (b[6] && b[6] === b[7] && b[7] === b[8]) {
-	    //console.log(b[6] + ' wins!');
 	    $('.win-message').text(b[6] + ' wins!');
 	    gameOver = true;
 	  }
 
 	  // VERTICAL CHECKS
 	  if (b[0] && b[0] === b[3] && b[3] === b[6]) {
-	    //console.log(b[0] + ' wins!');
 	    $('.win-message').text(b[0] + ' wins!');
 	    gameOver = true;
 	  } else if (b[1] && b[1] === b[4] && b[4] === b[7]) {
-	    //console.log(b[1] + ' wins!');
 	    $('.win-message').text(b[1] + ' wins!');
 	    gameOver = true;
 	  } else if (b[2] && b[2] === b[5] && b[5] === b[8]) {
-	    //console.log(b[2] + ' wins!');
 	    $('.win-message').text(b[2] + ' wins!');
 	    gameOver = true;
 	  }
 
 	  // DIAGONAL CHECKS
 	  if (b[0] && b[0] === b[4] && b[4] === b[8]) {
-	    //console.log(b[0] + ' wins!');
 	    $('.win-message').text(b[0] + ' wins!');
 	    gameOver = true;
 	  } else if (b[2] && b[2] === b[4] && b[4] === b[6]) {
-	    //console.log(b[2] + ' wins!');
 	    $('.win-message').text(b[2] + ' wins!');
 	    gameOver = true;
 	  }
@@ -373,11 +368,13 @@ webpackJsonp([0],[
 	      $(tileId).html('X');
 	      glob.vars.board[i] = 'x';
 	      glob.vars.lastMove = 'x';
+
 	      onUpdateGame();
 	    } else {
 	      $(tileId).html('O');
 	      glob.vars.board[i] = 'o';
 	      glob.vars.lastMove = 'o';
+
 	      onUpdateGame();
 	    }
 
@@ -455,19 +452,17 @@ webpackJsonp([0],[
 	var vault = __webpack_require__(6);
 	var glob = __webpack_require__(11);
 
-	var getAllGames = function getAllGames(player_x) {
+	var getAllGames = function getAllGames() {
 	  return $.ajax({
 	    url: vault.host + '/games',
 	    method: 'GET',
 	    headers: {
 	      Authorization: 'Token token=' + vault.user.token
-	    },
-	    player_x: player_x
+	    }
 	  });
 	};
 
 	var createGame = function createGame() {
-	  // works!
 	  return $.ajax({
 	    url: vault.host + '/games',
 	    method: 'POST',
@@ -480,7 +475,7 @@ webpackJsonp([0],[
 
 	var updateGame = function updateGame(data) {
 	  return $.ajax({
-	    url: vault.host + '/games/' + vault.user.id,
+	    url: vault.host + '/games/' + vault.game.id,
 	    method: 'PATCH',
 	    headers: {
 	      Authorization: 'Token token=' + vault.user.token
@@ -529,6 +524,8 @@ webpackJsonp([0],[
 
 	var success = function success(data) {
 	  vault.game = data.game;
+	  $('.login-alert').text('');
+
 	  //console.log(data);
 	  //console.log('create success');
 	};
@@ -537,7 +534,7 @@ webpackJsonp([0],[
 	  vault.game = data.game;
 	  //console.log(data);
 	  $('.stats-message').text("You've played " + data.games.length + ' games');
-	  console.log('get Game success');
+	  //console.log('get Game success');
 	};
 
 	var updateSuccess = function updateSuccess(data) {
@@ -547,7 +544,7 @@ webpackJsonp([0],[
 
 	var failure = function failure(error) {
 	  //console.error(error);
-	  $('.login-alert').text('Please register and sign in before playing!');
+	  //$('.login-alert').text('Please register and sign in before playing!');
 	};
 
 	var createGameFailure = function createGameFailure(error) {
