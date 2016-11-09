@@ -9,7 +9,6 @@ const vault = require('../vault');
 // JQuery works but linter is throwing errors for "$ is not defined"
 
 const signUp = function (data) {
-  console.log(data);
   return $.ajax({
     url: vault.host + '/sign-up/',
     method: 'POST',
@@ -18,7 +17,6 @@ const signUp = function (data) {
 };
 
 const signIn = function (data) {
-  console.log(data);
   return $.ajax({
     url: vault.host + '/sign-in/',
     method: 'POST',
