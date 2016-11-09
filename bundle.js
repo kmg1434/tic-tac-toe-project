@@ -109,7 +109,6 @@ webpackJsonp([0],[
 	// JQuery works but linter is throwing errors for "$ is not defined"
 
 	var signUp = function signUp(data) {
-	  console.log(data);
 	  return $.ajax({
 	    url: vault.host + '/sign-up/',
 	    method: 'POST',
@@ -118,7 +117,6 @@ webpackJsonp([0],[
 	};
 
 	var signIn = function signIn(data) {
-	  console.log(data);
 	  return $.ajax({
 	    url: vault.host + '/sign-in/',
 	    method: 'POST',
@@ -178,17 +176,13 @@ webpackJsonp([0],[
 
 	var signInSuccess = function signInSuccess(data) {
 	  vault.user = data.user;
-	  //console.log('Successfully signed in');
-	  //console.log(vault.user);
+	  $('.button-bar').show();
 	};
 
 	var signOutSuccess = function signOutSuccess() {
 	  vault.user = null;
 	  $('.stats-message').text('');
 	  $('.win-message').text('');
-
-	  //console.log('Successfully signed out');
-	  //console.log(vault);
 	};
 
 	var changePasswordSuccess = function changePasswordSuccess() {
@@ -288,6 +282,7 @@ webpackJsonp([0],[
 	var api = __webpack_require__(10);
 	var ui = __webpack_require__(12);
 	var glob = __webpack_require__(11);
+	$('.button-bar').hide();
 
 	var onGetAllGames = function onGetAllGames() {
 	  api.getAllGames().then(ui.getGamesSuccess).catch(ui.failure);
@@ -525,21 +520,15 @@ webpackJsonp([0],[
 	var success = function success(data) {
 	  vault.game = data.game;
 	  $('.login-alert').text('');
-
-	  //console.log(data);
-	  //console.log('create success');
 	};
 
 	var getGamesSuccess = function getGamesSuccess(data) {
 	  vault.game = data.game;
-	  //console.log(data);
 	  $('.stats-message').text("You've played " + data.games.length + ' games');
-	  //console.log('get Game success');
 	};
 
 	var updateSuccess = function updateSuccess(data) {
 	  vault.game = data.game;
-	  //console.log(data);
 	};
 
 	var failure = function failure(error) {
