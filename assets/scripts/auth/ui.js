@@ -4,8 +4,8 @@ const vault = require('../vault.js');
 
 const signInSuccess = (data) => {
   vault.user = data.user;
-  //console.log('Successfully signed in');
-  //console.log(vault.user);
+  $('.button-bar').show();
+
 };
 
 const signOutSuccess = () => {
@@ -13,8 +13,6 @@ const signOutSuccess = () => {
   $('.stats-message').text('');
   $('.win-message').text('');
 
-  //console.log('Successfully signed out');
-  //console.log(vault);
 };
 
 const changePasswordSuccess = () => {

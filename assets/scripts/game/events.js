@@ -4,6 +4,7 @@
 const api = require('./api');
 const ui = require('./ui');
 const glob = require('./global.js');
+$('.button-bar').hide();
 
 const onGetAllGames = function () {
   api.getAllGames()
