@@ -109,7 +109,7 @@ const onClick = function (event) {
 
   }
 
-  if (glob.vars.turnCount === 9) {   // TIE GAME CHECK
+  if ((glob.vars.turnCount === 9) && (winCheck() === false)) {   // TIE GAME CHECK
     //console.log('TIE GAME');
     $('.tie-message').text('tie game!');
     glob.vars.gameOver = true;
