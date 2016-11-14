@@ -382,7 +382,7 @@ webpackJsonp([0],[
 	    $('.col-xs-4').css('pointer-events', 'none');
 	  }
 
-	  if (glob.vars.turnCount === 9) {
+	  if (glob.vars.turnCount === 9 && winCheck() === false) {
 	    // TIE GAME CHECK
 	    //console.log('TIE GAME');
 	    $('.tie-message').text('tie game!');
