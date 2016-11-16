@@ -1,6 +1,5 @@
 'use strict';
 
-// const getFormFields = require('../../../lib/get-form-fields.js');
 const api = require('./api');
 const ui = require('./ui');
 const glob = require('./global.js');
@@ -15,7 +14,7 @@ const onGetAllGames = function () {
 const onCreateGame = function (event) {
   event.preventDefault();
   api.createGame()
-    .then(ui.success)
+    .then(ui.createGameSuccess)
     .catch(ui.createGameFailure);
 };
 

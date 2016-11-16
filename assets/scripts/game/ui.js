@@ -8,6 +8,12 @@ const success = (data) => {
 
 };
 
+const createGameSuccess = (data) => {
+  vault.game = data.game;
+  $('.login-alert').text('');
+
+};
+
 const getGamesSuccess = (data) => {
   vault.game = data.game;
   $('.stats-message')
@@ -20,19 +26,18 @@ const updateSuccess = (data) => {
 };
 
 const failure = (error) => {
-  //console.error(error);
-  //$('.login-alert').text('Please register and sign in before playing!');
+  $('.login-alert').text('FAIL!');
 };
 
-const createGameFailure = (error) => {
-  //console.error(error);
+const createGameFailure = () => {
   $('.login-alert').text('Please register and sign in before playing!');
 };
 
 module.exports = {
-  failure,
   success,
+  failure,
   updateSuccess,
   getGamesSuccess,
+  createGameSuccess,
   createGameFailure,
 };
