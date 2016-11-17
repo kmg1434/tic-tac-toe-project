@@ -89,29 +89,25 @@ const onClick = function (event) {
       $(tileId).html('X');
       glob.vars.board[i] = 'x';
       glob.vars.lastMove = 'x';
-
-      onUpdateGame();
     } else {
       $(tileId).html('O');
       glob.vars.board[i] = 'o';
       glob.vars.lastMove = 'o';
-
-      onUpdateGame();
     }
 
+    // console.log('dataGamesLength (in onClick): ' + glob.vars.dataGamesLength);
+    onUpdateGame();
     glob.vars.turnCount++;
     glob.vars.xTurn = !glob.vars.xTurn; // change teams
   }
 
-  if (winCheck()) { // on win, turn off click
-    $('.col-xs-4').css('pointer-events', 'none');
-
-  }
-
-  if ((glob.vars.turnCount === 9) && (winCheck() === false)) {   // TIE GAME CHECK
-    //console.log('TIE GAME');
+  // GAME OVER CHECK
+  if ((glob.vars.turnCount === 9) && (winCheck() === false)) {
     $('.tie-message').text('tie game!');
     glob.vars.gameOver = true;
+
+  } else if (winCheck()) { // on win, turn off click
+    $('.col-xs-4').css('pointer-events', 'none');
 
   }
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const vault = require('../vault.js');
+const glob = require('./global.js');
 
 const success = (data) => {
   vault.game = data.game;
@@ -14,8 +15,8 @@ const createGameSuccess = (data) => {
 
 };
 
+// data.games.length should only increment on win or tie.
 const getGamesSuccess = (data) => {
-  vault.game = data.game;
   $('.stats-message')
   .text("You've played " + data.games.length + ' games');
 };

@@ -1,7 +1,6 @@
 'use strict';
 
 const vault = require('../vault.js');
-const glob = require('./global.js');
 
 const getAllGames = function () {
   return $.ajax({

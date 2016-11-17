@@ -9,6 +9,9 @@ const signUpSuccess = () => {
 const signInSuccess = (data) => {
   vault.user = data.user;
   $('.button-bar').show();
+  $('.login-alert').text('');
+  // hide sign in button so you can't sign in twice
+  $('#sign-in-button').hide();
   $('#sign-in-modal').modal('hide');
 
 };

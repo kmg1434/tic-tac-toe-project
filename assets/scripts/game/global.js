@@ -10,6 +10,8 @@ const vars = {
   lastI: 0,
   lastMove: '',
 
+  //dataGamesLength: 0,
+
 };
 
 module.exports = {
