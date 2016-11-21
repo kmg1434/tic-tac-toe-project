@@ -61,7 +61,7 @@ webpackJsonp([0],[
 	var onSignUp = function onSignUp(event) {
 	  event.preventDefault();
 	  var data = getFormFields(this);
-	  api.signUp(data).then(ui.success).catch(ui.failure);
+	  api.signUp(data).then(ui.signUpSuccess).catch(ui.failure);
 	};
 
 	var onSignIn = function onSignIn(event) {
@@ -174,15 +174,24 @@ webpackJsonp([0],[
 
 	var vault = __webpack_require__(6);
 
+	var signUpSuccess = function signUpSuccess() {
+	  $('#sign-up-modal').modal('hide');
+	};
+
 	var signInSuccess = function signInSuccess(data) {
 	  vault.user = data.user;
 	  $('.button-bar').show();
+	  $('.login-alert').text('');
+	  // hide sign in button so you can't sign in twice
+	  $('#sign-in-button').hide();
+	  $('#sign-in-modal').modal('hide');
 	};
 
 	var signOutSuccess = function signOutSuccess() {
 	  vault.user = null;
 	  $('.stats-message').text('');
 	  $('.win-message').text('');
+	  $('#sign-out-modal').modal('hide');
 	};
 
 	var changePasswordSuccess = function changePasswordSuccess() {
@@ -200,6 +209,7 @@ webpackJsonp([0],[
 	module.exports = {
 	  failure: failure,
 	  success: success,
+	  signUpSuccess: signUpSuccess,
 	  signInSuccess: signInSuccess,
 	  signOutSuccess: signOutSuccess,
 	  changePasswordSuccess: changePasswordSuccess
@@ -277,11 +287,9 @@ webpackJsonp([0],[
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	// const getFormFields = require('../../../lib/get-form-fields.js');
-
 	var api = __webpack_require__(10);
-	var ui = __webpack_require__(12);
-	var glob = __webpack_require__(11);
+	var ui = __webpack_require__(11);
+	var glob = __webpack_require__(12);
 	$('.button-bar').hide();
 
 	var onGetAllGames = function onGetAllGames() {
@@ -290,7 +298,7 @@ webpackJsonp([0],[
 
 	var onCreateGame = function onCreateGame(event) {
 	  event.preventDefault();
-	  api.createGame().then(ui.success).catch(ui.createGameFailure);
+	  api.createGame().then(ui.createGameSuccess).catch(ui.createGameFailure);
 	};
 
 	var onUpdateGame = function onUpdateGame() {
@@ -363,30 +371,25 @@ webpackJsonp([0],[
 	      $(tileId).html('X');
 	      glob.vars.board[i] = 'x';
 	      glob.vars.lastMove = 'x';
-
-	      onUpdateGame();
 	    } else {
 	      $(tileId).html('O');
 	      glob.vars.board[i] = 'o';
 	      glob.vars.lastMove = 'o';
-
-	      onUpdateGame();
 	    }
 
+	    // console.log('dataGamesLength (in onClick): ' + glob.vars.dataGamesLength);
+	    onUpdateGame();
 	    glob.vars.turnCount++;
 	    glob.vars.xTurn = !glob.vars.xTurn; // change teams
 	  }
 
-	  if (winCheck()) {
-	    // on win, turn off click
-	    $('.col-xs-4').css('pointer-events', 'none');
-	  }
-
+	  // GAME OVER CHECK
 	  if (glob.vars.turnCount === 9 && winCheck() === false) {
-	    // TIE GAME CHECK
-	    //console.log('TIE GAME');
 	    $('.tie-message').text('tie game!');
 	    glob.vars.gameOver = true;
+	  } else if (winCheck()) {
+	    // on win, turn off click
+	    $('.col-xs-4').css('pointer-events', 'none');
 	  }
 	};
 
@@ -445,7 +448,6 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var vault = __webpack_require__(6);
-	var glob = __webpack_require__(11);
 
 	var getAllGames = function getAllGames() {
 	  return $.ajax({
@@ -488,6 +490,52 @@ webpackJsonp([0],[
 
 /***/ },
 /* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var vault = __webpack_require__(6);
+	var glob = __webpack_require__(12);
+
+	var success = function success(data) {
+	  vault.game = data.game;
+	  $('.login-alert').text('');
+	};
+
+	var createGameSuccess = function createGameSuccess(data) {
+	  vault.game = data.game;
+	  $('.login-alert').text('');
+	};
+
+	// data.games.length should only increment on win or tie.
+	var getGamesSuccess = function getGamesSuccess(data) {
+	  $('.stats-message').text("You've played " + data.games.length + ' games');
+	};
+
+	var updateSuccess = function updateSuccess(data) {
+	  vault.game = data.game;
+	};
+
+	var failure = function failure(error) {
+	  $('.login-alert').text('FAIL!');
+	};
+
+	var createGameFailure = function createGameFailure() {
+	  $('.login-alert').text('Please register and sign in before playing!');
+	};
+
+	module.exports = {
+	  success: success,
+	  failure: failure,
+	  updateSuccess: updateSuccess,
+	  getGamesSuccess: getGamesSuccess,
+	  createGameSuccess: createGameSuccess,
+	  createGameFailure: createGameFailure
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -508,47 +556,6 @@ webpackJsonp([0],[
 	module.exports = {
 	  vars: vars
 	};
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
-
-	var vault = __webpack_require__(6);
-
-	var success = function success(data) {
-	  vault.game = data.game;
-	  $('.login-alert').text('');
-	};
-
-	var getGamesSuccess = function getGamesSuccess(data) {
-	  vault.game = data.game;
-	  $('.stats-message').text("You've played " + data.games.length + ' games');
-	};
-
-	var updateSuccess = function updateSuccess(data) {
-	  vault.game = data.game;
-	};
-
-	var failure = function failure(error) {
-	  //console.error(error);
-	  //$('.login-alert').text('Please register and sign in before playing!');
-	};
-
-	var createGameFailure = function createGameFailure(error) {
-	  //console.error(error);
-	  $('.login-alert').text('Please register and sign in before playing!');
-	};
-
-	module.exports = {
-	  failure: failure,
-	  success: success,
-	  updateSuccess: updateSuccess,
-	  getGamesSuccess: getGamesSuccess,
-	  createGameFailure: createGameFailure
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 13 */
