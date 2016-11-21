@@ -41,19 +41,18 @@ through all function calls from the first click to understand the flow of the
 API and the locally hosted server. Being able to read the HTTP codes was very
 helpful for making sure my API functionality was correct.
 
-## Unsolved Problems
+## Future Features
 
 - Play over multiple devices.
-- Uncaught token error when not signed in.
-- Lacking pretty css styling/colors/fonts (still usable however)
+- css styling/colors/fonts
 
 ## User Stories
 
--As a user I can sign up, sign in, sign out, and change Password
--As a user I can create X and O markers on the board
--As a user I can win, lose, or tie the game
--As a user I can see how many games I have played
--As a user I will know intuitively how to use the interface
+- As a user I can sign up, sign in, sign out, and change Password
+- As a user I can create X and O markers on the board
+- As a user I can win, lose, or tie the game
+- As a user I can see how many games I have played
+- As a user I will know intuitively how to use the interface
 
 ## Wireframes
 
