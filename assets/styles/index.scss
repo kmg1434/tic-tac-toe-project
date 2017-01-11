@@ -2,28 +2,42 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 $black: #000;
+$base: #594157;
+$board: #BEE7E8;
+$tile: #7D8CC4;
 
-.board {
-  margin-top: 100px;
-  padding: 10px;
+body {
+  background-color: $base;
 }
 
-.col-xs-4 {
-  border: 5px solid $black;
-  height: 100px;
-  width: 100px;
+.flex-container {
+  border: 10px solid $board;
+  margin: 0 auto;
+  overflow: auto;
+  width: 80%;
 }
 
-// centered columns styles
-.row-centered {
-  text-align: center;
+.flex-item {
+    border: 1px solid $tile;
+    color: white;
+    float: left;
+    font-size: 3em;
+    font-weight: bold;
+    padding-bottom: 33%;
+    width: 33%;
 }
+
+// .board {
+//   display: inline-grid;
+//   margin-top: 100px;
+//   padding: 10px;
+// }
 
 .col-centered {
-  display: inline-block;
-  float: none;
-  // inline-block space fix
-  margin-right: -4px;
-  // reset the text-align
-  text-align: left;
+  // display: inline-block;
+  // float: none;
+  // // inline-block space fix
+  // margin-right: -4px;
+  // // reset the text-align
+  // text-align: left;
 }

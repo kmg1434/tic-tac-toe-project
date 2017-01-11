@@ -1,198 +1,196 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Tic Tac Toe</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="dependencies.js" type="text/javascript" charset="utf-8" defer></script>
-    <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
-  </head>
 
-  <!-- BODY -->
-  <body class="container">
+<head>
+  <title>Tic Tac Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="dependencies.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
 
-    <!-- NAV BAR STARTS HERE -->
+<!-- BODY -->
 
-    <nav class="navbar navbar-default">
+<body>
+
+  <!-- NAV BAR STARTS HERE -->
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
       <span class="sr-only">Toggle navigation</span>
     </button>
-    <a class="navbar-brand" >Tic Tac Toe</a>
-    </div>
+        <a class="navbar-brand">Tic Tac Toe</a>
+      </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up/In here! </a>
-        <ul class="dropdown-menu">
-          <li>
-            <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#sign-up-modal">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up/In here! </a>
+            <ul class="dropdown-menu">
+              <li>
+                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#sign-up-modal">
               Sign Up
             </button>
-            <button type="button" id="sign-in-button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#sign-in-modal">
+                <button type="button" id="sign-in-button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#sign-in-modal">
               Sign In
             </button>
-            <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#sign-out-modal">
+                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#sign-out-modal">
               Sign Out
             </button>
-            <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#change-password-modal">
+                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#change-password-modal">
               Change Password
             </button>
+              </li>
+
+            </ul>
           </li>
-
         </ul>
-      </li>
-    </ul>
-    </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-    </nav>
-
-    <div class="button-bar">
-      <input type="button" class="new-game-button" value="New Game">
-      <input type="button" class="get-games-button" value="Get Games">
+      </div>
+      <!-- /.navbar-collapse -->
     </div>
+    <!-- /.container-fluid -->
+  </nav>
 
-    <div class="stats-message"></div>
-    <div class="win-message"></div>
-    <div class="tie-message"></div>
-    <div class="login-alert">Please sign in to start!</div>
+  <div class="button-bar">
+    <input type="button" class="new-game-button" value="New Game">
+    <input type="button" class="get-games-button" value="Get Games">
+  </div>
 
-    <!-- BOARD STARTS HERE -->
+  <div class="feedback stats-message"></div>
+  <div class="feedback win-message"></div>
+  <div class="feedback tie-message"></div>
+  <div class="feedback login-alert">Please sign in to start!</div>
 
-    <div class="board">
-      <div class="row row-centered">
-        <div id="tile0" class="col-xs-4 col-centered">Tile0</div>
-        <div id="tile1" class="col-xs-4 col-centered">Tile1</div>
-        <div id="tile2" class="col-xs-4 col-centered">Tile2</div>
-      </div>
-      <div class="row row-centered">
-        <div id="tile3" class="col-xs-4 col-centered">Tile3</div>
-        <div id="tile4" class="col-xs-4 col-centered">Tile4</div>
-        <div id="tile5" class="col-xs-4 col-centered">Tile5</div>
-      </div>
-      <div class="row row-centered">
-        <div id="tile6" class="col-xs-4 col-centered">Tile6</div>
-        <div id="tile7" class="col-xs-4 col-centered">Tile7</div>
-        <div id="tile8" class="col-xs-4 col-centered">Tile8</div>
-      </div>
-    </div>
+  <!-- BOARD STARTS HERE -->
 
-    <!-- Sign Up Modal -->
-    <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="sign-up-label">Sign Up</h4>
-          </div>
-          <div class="modal-body">
+  <div class="board flex-container">
+    <div id="tile0" class="flex-item"></div>
+    <div id="tile1" class="flex-item"></div>
+    <div id="tile2" class="flex-item"></div>
+    <div id="tile3" class="flex-item"></div>
+    <div id="tile4" class="flex-item"></div>
+    <div id="tile5" class="flex-item"></div>
+    <div id="tile6" class="flex-item"></div>
+    <div id="tile7" class="flex-item"></div>
+    <div id="tile8" class="flex-item"></div>
+  </div>
 
-            <!-- Form Fields -->
-            <form class="sign-up-form">
-              <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" name="credentials[email]" class="form-control" id="sign-up-email-input" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="credentials[password]" class="form-control" id="sign-up-password-input" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <label for="confirm">Confirm Password</label>
-                <input type="password" name="credentials[password_confirmation]" class="form-control" id="sign-up-confirm-input" placeholder="Confirm Password">
-              </div>
+  <!-- Sign Up Modal -->
+  <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="sign-up-label">Sign Up</h4>
+        </div>
+        <div class="modal-body">
 
-                <button type="button" class="btn btn-default" >Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
+          <!-- Form Fields -->
+          <form class="sign-up-form">
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" name="credentials[email]" class="form-control" id="sign-up-email-input" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="credentials[password]" class="form-control" id="sign-up-password-input" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="confirm">Confirm Password</label>
+              <input type="password" name="credentials[password_confirmation]" class="form-control" id="sign-up-confirm-input" placeholder="Confirm Password">
+            </div>
+
+            <button type="button" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Sign In Modal -->
-    <div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="sign-in-label">Sign In</h4>
-          </div>
-          <div class="modal-body">
+  <!-- Sign In Modal -->
+  <div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="sign-in-label">Sign In</h4>
+        </div>
+        <div class="modal-body">
 
-              <!-- Form Fields -->
-              <form class="sign-in-form">
-                <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input type="email" name="credentials[email]" class="form-control" id="email-input" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" name="credentials[password]" class="form-control" id="password-input" placeholder="Password">
-                </div>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-          </div>
+          <!-- Form Fields -->
+          <form class="sign-in-form">
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" name="credentials[email]" class="form-control" id="email-input" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="credentials[password]" class="form-control" id="password-input" placeholder="Password">
+            </div>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Sign Out Modal -->
-    <div class="modal fade" id="sign-out-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="sign-out-label">Are you sure you wish to sign out?</h4>
-          </div>
-          <div class="modal-body">
+  <!-- Sign Out Modal -->
+  <div class="modal fade" id="sign-out-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="sign-out-label">Are you sure you wish to sign out?</h4>
+        </div>
+        <div class="modal-body">
 
-              <!-- Form Fields -->
-              <form class="sign-out-form">
-                <button type="submit" class="btn btn-primary">Yes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-              </form>
-          </div>
+          <!-- Form Fields -->
+          <form class="sign-out-form">
+            <button type="submit" class="btn btn-primary">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          </form>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Change Password Modal -->
-    <div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="change-password-label">Change Password</h4>
-          </div>
-          <div class="modal-body">
+  <!-- Change Password Modal -->
+  <div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="change-password-label">Change Password</h4>
+        </div>
+        <div class="modal-body">
 
-            <!-- Form Fields -->
-            <form class="change-password-form">
-              <div class="form-group">
-                <label for="password">Old Password</label>
-                <input type="password" name="passwords[old]" class="form-control" placeholder="Old Password">
-              </div>
-              <div class="form-group">
-                <label for="password">New Password</label>
-                <input type="password" name="passwords[new]" class="form-control" placeholder="New Password">
-              </div>
+          <!-- Form Fields -->
+          <form class="change-password-form">
+            <div class="form-group">
+              <label for="password">Old Password</label>
+              <input type="password" name="passwords[old]" class="form-control" placeholder="Old Password">
+            </div>
+            <div class="form-group">
+              <label for="password">New Password</label>
+              <input type="password" name="passwords[new]" class="form-control" placeholder="New Password">
+            </div>
 
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
 
-            </form>
+          </form>
 
-          </div>
         </div>
       </div>
     </div>
+  </div>
 
-  </body>
+</body>
+
 </html>
